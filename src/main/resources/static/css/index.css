@@ -1,0 +1,94 @@
+@import url(mainConfig.css);
+
+body {
+    margin: 0;
+    padding: 25px;
+    font-family: Arial, sans-serif;
+    background: var(--verdeSuave);
+    color: var(--colorSuperOscuro);
+}
+
+.header {
+    background: var(--colorBlanco);
+    padding: 15px 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+
+.welcome {
+    font-size: 18px;
+    color: var(--colorVerdeMuyOscuro);
+    font-weight: bold;
+}
+
+.btn {
+    padding: 9px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    transition: 0.2s;
+    display: inline-block;
+    border: none;
+}
+
+.btn-primary {
+    background: var(--colorVerde);
+    margin-bottom: 20px;
+}
+
+.btn-primary:hover {
+    background: var(--verdeHover);
+}
+
+.btn-edit {
+    background: var(--colorVerdePrincipal);
+}
+
+.btn-edit:hover {
+    background: var(--colorVerdeMuyOscuro);
+}
+
+.btn-delete {
+    background: #e74c3c;
+}
+
+.btn-delete:hover {
+    background: #c0392b;
+}
+
+/* TABLA */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--colorBlanco);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+
+th {
+    background: var(--colorVerdePrincipal);
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-weight: bold;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+tr:hover {
+    background: var(--verdeSuave2);
+    transition: 0.2s;
+}
+
+.actions a {
+    margin-right: 6px;
+}

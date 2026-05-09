@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi perfil</title>
+    <link rel="stylesheet" th:href="@{/css/perfil.css}">
+</head>
+
+<body>
+
+<div class="perfil-container">
+
+    <h2>Mi perfil <span sec:authentication="principal.username" ></span></h2>
+
+    <form th:action="@{/estudiante/actualizar}" method="post">
+
+        <input type="hidden" name="id" th:value="${estudiante.id}">
+
+        <div class="grid">
+
+            <div class="field">
+                <label>Tipo documento</label>
+                <select name="tipoDocumento">
+                    <option th:selected="${estudiante.tipoDocumento == 'cc'}" value="cc">Cédula</option>
+                    <option th:selected="${estudiante.tipoDocumento == 'ti'}" value="ti">Tarjeta identidad</option>
+                    <option th:selected="${estudiante.tipoDocumento == 'ce'}" value="ce">Extranjería</option>
+                    <option th:selected="${estudiante.tipoDocumento == 'pp'}" value="pp">Pasaporte</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Número documento</label>
+                <input type="text" name="numeroDocumento" th:value="${estudiante.numeroDocumento}">
+            </div>
+
+            <div class="field">
+                <label>Nombre</label>
+                <input type="text" name="nombre" th:value="${estudiante.nombre}">
+            </div>
+
+            <div class="field">
+                <label>Apellido</label>
+                <input type="text" name="apellido" th:value="${estudiante.apellido}">
+            </div>
+
+            <div class="field">
+                <label>Email</label>
+                <input type="email" name="email" th:value="${estudiante.email}">
+            </div>
+
+            <div class="field">
+                <label>Teléfono</label>
+                <input type="text" name="telefono" th:value="${estudiante.telefono}">
+            </div>
+
+            <div class="field">
+                <label>Edad</label>
+                <input type="number" name="edad" th:value="${estudiante.edad}">
+            </div>
+
+        </div>
+
+        <button type="submit">Actualizar</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

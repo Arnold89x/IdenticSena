@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro Estudiante</title>
+    <link rel="stylesheet" th:href="@{/css/registro.css}">
+</head>
+<body>
+<div class="registro-container">
+    <div th:if="${param.exito}">
+        <div class="alert alert-info">
+            Se ha registrado correctamente
+        </div>
+    </div>
+    <div th:if="${param.error}">
+        <div class="alert alert-error">
+            No se ha registrado el usuario, revise las credenciales
+        </div>
+    </div>
+
+    <h1 class="registro-titulo">Registro de Usuario</h1>
+
+    <form th:action="@{/registro}" method="post" th:object="${estudiante}">
+
+        <div class="form-group">
+            <label for="tipoDocumento" class="form-label">Tipo de documento:</label>
+            <select id="tipoDocumento" class="form-input" th:field="*{tipoDocumento}" required>
+                <option value="">Tipo de documento</option>
+                <option value="cc">Cédula de ciudadanía</option>
+                <option value="ti">Tarjeta de identidad</option>
+                <option value="ce">Cédula de extranjería</option>
+                <option value="pp">Pasaporte</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="numeroDocumento" class="form-label">Número de documento:</label>
+            <input type="number" id="numeroDocumento" class="form-input" th:field="*{numeroDocumento}" placeholder="Número de documento" required autofocus="autofocus">
+        </div>
+
+        <div class="form-group">
+            <label for="nombre" class="form-label">Nombre:</label>
+            <input type="text" id="nombre" class="form-input" placeholder="Nombre" th:field="*{nombre}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="apellido" class="form-label">Apellido:</label>
+            <input type="text" id="apellido" class="form-input" th:field="*{apellido}" placeholder="Apellido" required>
+        </div>
+
+        <div class="form-group">
+            <label for="edad" class="form-label">Edad:</label>
+            <input type="number" id="edad" class="form-input" th:field="*{edad}" placeholder="Edad" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email" class="form-label">Correo electrónico:</label>
+            <input type="email" id="email" class="form-input" th:field="*{email}" placeholder="Correo electrónico" required>
+        </div>
+
+        <div class="form-group">
+            <label for="contrasena" class="form-label">Contraseña:</label>
+            <input type="password" id="contrasena" class="form-input" th:field="*{contrasena}" placeholder="Contraseña" required>
+        </div>
+
+        <div class="form-group">
+            <label for="confirmarContrasena" class="form-label">Confirmar contraseña:</label>
+            <input type="password" id="confirmarContrasena" class="form-input" placeholder="Confirmar contraseña" required>
+        </div>
+
+        <div class="form-group">
+            <label for="telefono" class="form-label">Teléfono:</label>
+            <input type="tel" id="telefono" class="form-input" th:field="*{telefono}" placeholder="Teléfono" required>
+        </div>
+
+        <div class="submit">
+            <button type="submit" id="form-submit" class="btn btn-success">Registrarse!</button>
+        </div>
+
+        <p class="form-footer">¿Ya tienes una cuenta? <a th:href="@{/login}" class="form-link">Inicia sesión</a></p>
+    </form>
+</div>
+
+<script>
+    document.querySelector("form").addEventListener("submit", function (e) {
+        const pass = document.getElementById("contrasena").value;
+        const confirm = document.getElementById("confirmarContrasena").value;
+
+        if (pass !== confirm) {
+            e.preventDefault();
+            alert("Las contraseñas no coinciden");
+        }
+    });
+</script>
+</body>
+</html>

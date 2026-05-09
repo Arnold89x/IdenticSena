@@ -1,0 +1,90 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7f5;
+    margin: 0;
+}
+
+/* CONTENEDOR PRINCIPAL */
+.perfil-container {
+    width: 650px;
+    margin: 50px auto;
+    background: #ffffff;
+    padding: 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* TITULO */
+.perfil-container h2 {
+    text-align: center;
+    color: #1b5e20;
+    margin-bottom: 25px;
+}
+
+/* GRID PARA EVITAR DESCUADRE */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+/* CAMPOS */
+.field {
+    display: flex;
+    flex-direction: column;
+}
+
+/* LABELS */
+label {
+    font-size: 13px;
+    margin-bottom: 6px;
+    color: #2e7d32;
+    font-weight: 600;
+}
+
+/* INPUTS Y SELECT */
+input, select {
+    padding: 9px 10px;
+    border: 1px solid #c8e6c9;
+    border-radius: 7px;
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* FOCUS SUAVE */
+input:focus, select:focus {
+    border-color: #43a047;
+    box-shadow: 0 0 0 2px rgba(67,160,71,0.15);
+}
+
+/* BOTON */
+button {
+    margin-top: 22px;
+    width: 100%;
+    padding: 11px;
+    background: #2e7d32;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #1b5e20;
+}
+
+/* RESPONSIVE */
+@media (max-width: 700px) {
+    .perfil-container {
+        width: 90%;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
