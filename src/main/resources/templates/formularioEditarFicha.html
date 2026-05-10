@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Ficha</title>
+    <link rel="stylesheet" th:href="@{/css/formulariosAulaFicha.css}">
+</head>
+<body>
+
+<div class="contenedor-formulario">
+
+    <div class="card-formulario">
+
+        <h1>Editar Ficha</h1>
+
+        <form th:action="@{/admin/ficha/guardar}" method="post" th:object="${ficha}">
+
+            <input type="hidden" th:field="*{id}">
+
+            <div class="grupo-input">
+                <label>Código ficha</label>
+                <input type="number" th:field="*{codigo}" required>
+            </div>
+
+            <div class="grupo-input">
+                <label>Cantidad estudiantes</label>
+                <input type="number" th:field="*{estudiantes}" required>
+            </div>
+
+            <button type="submit" class="btn-guardar">
+                Guardar Cambios
+            </button>
+
+        </form>
+
+        <a th:href="@{/admin/aulasYFichas}" class="volver">
+            Volver
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

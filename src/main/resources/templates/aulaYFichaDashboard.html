@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Aulas y Fichas</title>
+
+    <link rel="stylesheet" th:href="@{/css/aulaYFichaDashboard.css}">
+</head>
+
+<body>
+
+<div class="mainContainer">
+
+    <!-- TOPBAR -->
+
+    <div class="topbar">
+
+        <div class="welcomeBox">
+            <h2>Gestión de aulas y fichas</h2>
+            <p>Administra aulas, fichas y relaciones</p>
+        </div>
+
+        <div class="topbarActions">
+
+            <a th:href="@{/admin/dashboard}" class="btnTop">
+                Dashboard
+            </a>
+
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="btnLogout">
+                    Cerrar sesión
+                </button>
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- GRID PRINCIPAL -->
+
+    <div class="dashboardGrid">
+
+        <!-- AULAS -->
+
+        <div class="card">
+
+            <div class="cardHeader">
+
+                <div>
+                    <h3>Aulas</h3>
+                    <span>Listado de aulas registradas</span>
+                </div>
+
+                <a th:href="@{/admin/aula/nuevo}" class="btnPrimary">
+                    + Nueva Aula
+                </a>
+
+            </div>
+
+            <div class="tableContainer">
+
+                <table>
+
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Capacidad</th>
+                        <th>Sede</th>
+                        <th>Piso</th>
+                        <th>Acciones</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+
+                    <tr th:each="aula : ${aulas}">
+
+                        <td th:text="${aula.id}"></td>
+                        <td th:text="${aula.nombre}"></td>
+                        <td th:text="${aula.capacidad}"></td>
+                        <td th:text="${aula.sede}"></td>
+                        <td th:text="${aula.piso}"></td>
+
+                        <td class="tableButtons">
+
+                            <a
+                                    th:href="@{'/admin/aula/editar/' + ${aula.id}}"
+                                    class="btnEdit">
+                                Editar
+                            </a>
+
+                            <a
+                                    th:href="@{'/admin/aula/eliminar/' + ${aula.id}}"
+                                    class="btnDelete">
+                                Eliminar
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+        <!-- FICHAS -->
+
+        <div class="card">
+
+            <div class="cardHeader">
+
+                <div>
+                    <h3>Fichas</h3>
+                    <span>Listado de fichas registradas</span>
+                </div>
+
+                <a th:href="@{/admin/ficha/nuevo}" class="btnPrimary">
+                    + Nueva Ficha
+                </a>
+
+            </div>
+
+            <div class="tableContainer">
+
+                <table>
+
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Código</th>
+                        <th>Estudiantes</th>
+                        <th>Acciones</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+
+                    <tr th:each="ficha : ${fichas}">
+
+                        <td th:text="${ficha.id}"></td>
+                        <td th:text="${ficha.codigo}"></td>
+                        <td th:text="${ficha.estudiantes}"></td>
+
+                        <td class="tableButtons">
+
+                            <a
+                                    th:href="@{'/admin/ficha/editar/' + ${ficha.id}}"
+                                    class="btnEdit">
+                                Editar
+                            </a>
+
+                            <a
+                                    th:href="@{'/admin/ficha/eliminar/' + ${ficha.id}}"
+                                    class="btnDelete">
+                                Eliminar
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- RELACIONAR -->
+
+    <div class="relationCard">
+
+        <div class="relationHeader">
+
+            <h3>Relacionar Aula con Ficha</h3>
+            <p>Asigna fichas a diferentes aulas</p>
+
+        </div>
+
+        <form th:action="@{/admin/relacion/guardar}" method="post">
+
+            <div class="relationGrid">
+
+                <div class="inputGroup">
+
+                    <label>Aula</label>
+
+                    <select name="aulaId">
+
+                        <option disabled selected>
+                            Seleccione un aula
+                        </option>
+
+                        <option
+                                th:each="aula : ${aulas}"
+                                th:value="${aula.id}"
+                                th:text="${aula.nombre}">
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="inputGroup">
+
+                    <label>Ficha</label>
+
+                    <select name="fichaId">
+
+                        <option disabled selected>
+                            Seleccione una ficha
+                        </option>
+
+                        <option
+                                th:each="ficha : ${fichas}"
+                                th:value="${ficha.id}"
+                                th:text="${ficha.codigo}">
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <button type="submit" class="btnPrimary relationButton">
+                Relacionar
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- TABLA RELACIONES -->
+
+    <div class="relationTableCard">
+
+        <div class="cardHeader">
+
+            <div>
+                <h3>Relaciones creadas</h3>
+                <span>Visualiza y administra relaciones</span>
+            </div>
+
+        </div>
+
+        <div class="tableContainer">
+
+            <table>
+
+                <thead>
+                <tr>
+                    <th>ID Aula</th>
+                    <th>Aula</th>
+                    <th>Fichas Relacionadas</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                <tr th:each="aula : ${aulas}">
+
+                    <td th:text="${aula.id}"></td>
+
+                    <td th:text="${aula.nombre}"></td>
+
+                    <td>
+
+                        <div
+                                th:each="ficha : ${aula.fichas}"
+                                class="relationItem">
+
+                            <div class="relationBadge greenBadge">
+
+                                <span>
+                                    Ficha:
+                                </span>
+
+                                <strong th:text="${ficha.codigo}"></strong>
+
+                            </div>
+
+                        </div>
+
+                    </td>
+
+                    <td>
+
+                        <div
+                                th:each="ficha : ${aula.fichas}"
+                                class="relationActions">
+                            <a
+                                    th:href="@{'/admin/relacion/eliminar/' + ${aula.id} + '/' + ${ficha.id}}"
+                                    class="btnDelete smallBtn">
+
+                                Eliminar
+
+                            </a>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

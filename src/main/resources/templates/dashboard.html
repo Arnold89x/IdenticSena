@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
     <title>DashBoard</title>
 </head>
 
@@ -16,7 +16,16 @@
     <div class="welcome">
         Bienvenido: <strong sec:authentication="principal.username"></strong>
     </div>
-    <a class="btn btn-delete" th:href="@{/login?logout}" onclick="return confirm('¿Esta seguro que desea cerrar sesion?');">Cerrar sesion</a>
+    <div class="nav_bar">
+        <p style="font-size:18px;"><strong>Creacion y manejo de : </strong></p>
+        <div class="button_crud_container">
+            <a class="boton_crud" th:href="@{/admin/dashboard}">Estudiantes</a>
+            <a class="boton_crud" th:href="@{/admin/aulasYFichas}">Aulas</a>
+            <a class="boton_crud" th:href="@{/admin/aulasYFichas}">Fichas</a>
+        </div>
+    </div>
+    <a class="btn btn-delete" th:href="@{/login?logout}"
+       onclick="return confirm('¿Esta seguro que desea cerrar sesion?');">Cerrar sesion</a>
 </div>
 
 <a class="btn btn-primary" th:href="@{/admin/nuevo}">+ Nuevo estudiante</a>
@@ -50,7 +59,8 @@
 
         <td class="actions">
             <a class="btn btn-edit" th:href="@{/admin/editar/{id}(id=${estudiante.id})}">Editar</a>
-            <a class="btn btn-delete" th:href="@{/admin/eliminar/{id}(id=${estudiante.id})}" onclick="return confirm('¿Eliminar este estudiante?');">Eliminar</a>
+            <a class="btn btn-delete" th:href="@{/admin/eliminar/{id}(id=${estudiante.id})}"
+               onclick="return confirm('¿Eliminar este estudiante?');">Eliminar</a>
         </td>
 
     </tr>

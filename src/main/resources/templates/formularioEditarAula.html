@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Aula</title>
+    <link rel="stylesheet" th:href="@{/css/formulariosAulaFicha.css}">
+</head>
+<body>
+
+<div class="contenedor-formulario">
+
+    <div class="card-formulario">
+
+        <h1>Editar Aula</h1>
+
+        <form th:action="@{/admin/aula/guardar}" method="post" th:object="${aula}">
+
+            <input type="hidden" th:field="*{id}">
+
+            <div class="grupo-input">
+                <label>Nombre del aula</label>
+                <input type="text" th:field="*{nombre}" required>
+            </div>
+
+            <div class="grupo-input">
+                <label>Capacidad</label>
+                <input type="number" th:field="*{capacidad}" required>
+            </div>
+
+            <div class="grupo-input">
+                <label>Sede</label>
+                <input type="text" th:field="*{sede}" required>
+            </div>
+
+            <div class="grupo-input">
+                <label>Piso</label>
+                <input type="text" th:field="*{piso}" required>
+            </div>
+
+            <button type="submit" class="btn-guardar">
+                Guardar Cambios
+            </button>
+
+        </form>
+
+        <a th:href="@{/admin/aulasYFichas}" class="volver">
+            Volver
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

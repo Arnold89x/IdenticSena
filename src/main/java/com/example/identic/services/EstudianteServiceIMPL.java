@@ -76,8 +76,8 @@ public class EstudianteServiceIMPL implements EstudianteService, UserDetailsServ
         }
         if (estudiante != null) {
             return new User(estudiante.getEmail(), estudiante.getContrasena(), mapearAutoridadesRoles(estudiante.getRol()));
-        }else{
-            return new User(admin.getCorreo(),admin.getContrasena(),mapearAutoridadesRoles(admin.getRol()));
+        } else {
+            return new User(admin.getCorreo(), admin.getContrasena(), mapearAutoridadesRoles(admin.getRol()));
         }
     }
 
