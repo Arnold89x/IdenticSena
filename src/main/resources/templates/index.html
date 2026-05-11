@@ -12,9 +12,19 @@
 
     <h2>Mi perfil <span sec:authentication="principal.username" ></span></h2>
 
-    <form th:action="@{/estudiante/actualizar}" method="post">
+    <form th:action="@{/estudiante/perfil/actualizar}" method="post">
 
         <input type="hidden" name="id" th:value="${estudiante.id}">
+
+        <div class="infoBox">
+            <label>Ficha</label>
+            <p th:if="${estudiante.ficha != null}"
+               th:text="${estudiante.ficha.codigo}">
+            </p>
+            <p th:if="${estudiante.ficha == null}">
+                Sin ficha asignada
+            </p>
+        </div>
 
         <div class="grid">
 
@@ -58,9 +68,27 @@
                 <input type="number" name="edad" th:value="${estudiante.edad}">
             </div>
 
+            <div class="field">
+                <label>Nueva contraseña</label>
+                <input
+                        type="password"
+                        name="contrasena"
+                        placeholder="Dejar vacío para no cambiar">
+            </div>
+
+            <div class="field">
+                <label>Confirmar contraseña</label>
+                <input
+                        type="password"
+                        id="confirmarContrasena"
+                        name="confirmarContrasena"
+                        placeholder="Repite la contraseña">
+            </div>
+
         </div>
 
         <button type="submit">Actualizar</button>
+        <a class="logout" th:href="@{/login?logout}">Cerrar sesion</a>
 
     </form>
 

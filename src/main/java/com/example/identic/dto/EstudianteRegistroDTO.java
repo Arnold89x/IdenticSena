@@ -11,8 +11,9 @@ public class EstudianteRegistroDTO {
     private String contrasena;
     private String telefono;
     private int edad;
+    private Long fichaId;
 
-    public EstudianteRegistroDTO(long id,String tipoDocumento,String numeroDocumento, String nombre, String apellido, String email, String contrasena, String telefono, int edad) {
+    public EstudianteRegistroDTO(long id,String tipoDocumento,String numeroDocumento, String nombre, String apellido, String email, String contrasena, String telefono, int edad, Long fichaId) {
         super();
         this.tipoDocumento= tipoDocumento;
         this.numeroDocumento = numeroDocumento;
@@ -23,6 +24,7 @@ public class EstudianteRegistroDTO {
         this.contrasena = contrasena;
         this.telefono = telefono;
         this.edad = edad;
+        this.fichaId = fichaId;
     }
 
     public EstudianteRegistroDTO() {
@@ -34,6 +36,14 @@ public class EstudianteRegistroDTO {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public Long getFichaId() {
+        return fichaId;
+    }
+
+    public void setFichaId(Long fichaId) {
+        this.fichaId = fichaId;
     }
 
     public String getTipoDocumento() {

@@ -16,4 +16,5 @@ public interface EstudianteService extends UserDetailsService {
 
     void eliminar(Long id);
 
+    void actualizarPerfil(String email, EstudianteRegistroDTO dto);
 }

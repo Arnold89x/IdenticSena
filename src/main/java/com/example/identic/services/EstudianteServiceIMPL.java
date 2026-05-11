@@ -3,10 +3,12 @@ package com.example.identic.services;
 import com.example.identic.dto.EstudianteRegistroDTO;
 import com.example.identic.models.AdminModel;
 import com.example.identic.models.EstudianteModel;
+import com.example.identic.models.FichaModel;
 import com.example.identic.models.RolModel;
 import com.example.identic.repositories.AdminRepository;
 import com.example.identic.repositories.EstudianteRepository;
 
+import com.example.identic.repositories.FichaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -38,6 +40,9 @@ public class EstudianteServiceIMPL implements EstudianteService, UserDetailsServ
     @Autowired
     AdminRepository adminRepository;
 
+    @Autowired
+    FichaRepository fichaRepository;
+
     @Override
     public EstudianteModel guardar(EstudianteRegistroDTO estudianteRegistroDTO) {
 
@@ -58,6 +63,11 @@ public class EstudianteServiceIMPL implements EstudianteService, UserDetailsServ
         estudiante.setEmail(estudianteRegistroDTO.getEmail());
         estudiante.setTelefono(estudianteRegistroDTO.getTelefono());
         estudiante.setEdad(estudianteRegistroDTO.getEdad());
+        FichaModel ficha = null;
+        if (estudianteRegistroDTO.getFichaId() != null) {
+            ficha = fichaRepository.findById(estudianteRegistroDTO.getFichaId()).orElse(null);
+        }
+        estudiante.setFicha(ficha);
         if (estudianteRegistroDTO.getContrasena() != null) {
             estudiante.setContrasena(passwordEncoder.encode(estudianteRegistroDTO.getContrasena()));
         }
@@ -97,6 +107,22 @@ public class EstudianteServiceIMPL implements EstudianteService, UserDetailsServ
 
     public void eliminar(Long id) {
         estudianteRepository.deleteById(id);
+    }
+
+    public void actualizarPerfil(String email, EstudianteRegistroDTO estudianteRegistroDTO) {
+        EstudianteModel estudiante = estudianteRepository.findByEmail(email);
+        estudiante.setTipoDocumento(estudianteRegistroDTO.getTipoDocumento());
+        estudiante.setNumeroDocumento(estudianteRegistroDTO.getNumeroDocumento());
+        estudiante.setNombre(estudianteRegistroDTO.getNombre());
+        estudiante.setApellido(estudianteRegistroDTO.getApellido());
+        estudiante.setTelefono(estudianteRegistroDTO.getTelefono());
+        estudiante.setEmail(estudianteRegistroDTO.getEmail());
+        estudiante.setEdad(estudianteRegistroDTO.getEdad());
+        if (estudianteRegistroDTO.getContrasena() != null && !estudianteRegistroDTO.getContrasena().isBlank()) {
+            estudiante.setContrasena(passwordEncoder.encode(estudianteRegistroDTO.getContrasena()));
+        }
+
+        estudianteRepository.save(estudiante);
     }
 
 }

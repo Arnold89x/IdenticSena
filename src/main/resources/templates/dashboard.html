@@ -14,25 +14,78 @@
 <div class="header">
 
     <div class="welcome">
-        Bienvenido: <strong sec:authentication="principal.username"></strong>
+        Bienvenido:
+        <strong sec:authentication="principal.username"></strong>
     </div>
+
     <div class="nav_bar">
-        <p style="font-size:18px;"><strong>Creacion y manejo de : </strong></p>
+
+        <p style="font-size:18px;">
+            <strong>Creacion y manejo de :</strong>
+        </p>
+
         <div class="button_crud_container">
-            <a class="boton_crud" th:href="@{/admin/dashboard}">Estudiantes</a>
-            <a class="boton_crud" th:href="@{/admin/aulasYFichas}">Aulas</a>
-            <a class="boton_crud" th:href="@{/admin/aulasYFichas}">Fichas</a>
+
+            <a class="boton_crud"
+               th:href="@{/admin/dashboard}">
+                Estudiantes
+            </a>
+
+            <a class="boton_crud"
+               th:href="@{/admin/aulasYFichas}">
+                Aulas Y Fichas
+            </a>
+
         </div>
+
     </div>
-    <a class="btn btn-delete" th:href="@{/login?logout}"
-       onclick="return confirm('¿Esta seguro que desea cerrar sesion?');">Cerrar sesion</a>
+
+    <a class="btn btn-delete"
+       th:href="@{/login?logout}"
+       onclick="return confirm('¿Esta seguro que desea cerrar sesion?');">
+
+        Cerrar sesion
+
+    </a>
+
 </div>
 
-<a class="btn btn-primary" th:href="@{/admin/nuevo}">+ Nuevo estudiante</a>
+<div class="top-actions">
+
+    <a class="btn btn-primary"
+       th:href="@{/admin/nuevo}">
+
+        + Nuevo estudiante
+
+    </a>
+
+    <div class="search-container">
+
+        <form th:action="@{/admin/dashboard}" method="get">
+
+            <input
+                    type="text"
+                    name="nombre"
+                    placeholder="Buscar estudiante..."
+                    th:value="${param.nombre}">
+
+            <button type="submit"
+                    class="btn btn-primary">
+
+                Buscar
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
 
 <table>
 
     <thead>
+
     <tr>
         <th>ID</th>
         <th>Tipo Doc</th>
@@ -41,8 +94,10 @@
         <th>Apellido</th>
         <th>Email</th>
         <th>Edad</th>
+        <th>Ficha</th>
         <th>Acciones</th>
     </tr>
+
     </thead>
 
     <tbody>
@@ -50,17 +105,51 @@
     <tr th:each="estudiante : ${estudiantes}">
 
         <td th:text="${estudiante.id}"></td>
+
         <td th:text="${estudiante.tipoDocumento}"></td>
+
         <td th:text="${estudiante.numeroDocumento}"></td>
+
         <td th:text="${estudiante.nombre}"></td>
+
         <td th:text="${estudiante.apellido}"></td>
+
         <td th:text="${estudiante.email}"></td>
+
         <td th:text="${estudiante.edad}"></td>
 
+        <td>
+
+            <span
+                    th:if="${estudiante.ficha != null}"
+                    th:text="${estudiante.ficha.codigo}">
+            </span>
+
+            <span th:if="${estudiante.ficha == null}">
+                Sin ficha
+            </span>
+
+        </td>
+
         <td class="actions">
-            <a class="btn btn-edit" th:href="@{/admin/editar/{id}(id=${estudiante.id})}">Editar</a>
-            <a class="btn btn-delete" th:href="@{/admin/eliminar/{id}(id=${estudiante.id})}"
-               onclick="return confirm('¿Eliminar este estudiante?');">Eliminar</a>
+
+            <a
+                    class="btn btn-edit"
+                    th:href="@{/admin/editar/{id}(id=${estudiante.id})}">
+
+                Editar
+
+            </a>
+
+            <a
+                    class="btn btn-delete"
+                    th:href="@{/admin/eliminar/{id}(id=${estudiante.id})}"
+                    onclick="return confirm('¿Eliminar este estudiante?');">
+
+                Eliminar
+
+            </a>
+
         </td>
 
     </tr>

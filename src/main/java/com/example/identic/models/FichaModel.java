@@ -14,6 +14,8 @@ public class FichaModel {
     private Long id;
     @ManyToMany(mappedBy = "fichas")
     private List<AulaModel> aulaModelList = new ArrayList<>();
+    @OneToMany(mappedBy = "ficha")
+    private List<EstudianteModel> estudiante;
     @Column
     private Long codigo;
     @Column

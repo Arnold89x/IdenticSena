@@ -17,6 +17,9 @@ public class EstudianteModel {
             inverseJoinColumns = @JoinColumn(name = "rol_id",referencedColumnName = "id")
     )
     private Collection<RolModel> rol;
+    @ManyToOne
+    @JoinColumn(name = "ficha_id")
+    private FichaModel ficha;
     @Column
     private String tipoDocumento;
     @Column
@@ -130,4 +133,11 @@ public class EstudianteModel {
         this.telefono = telefono;
     }
 
+    public FichaModel getFicha() {
+        return ficha;
+    }
+
+    public void setFicha(FichaModel ficha) {
+        this.ficha = ficha;
+    }
 }

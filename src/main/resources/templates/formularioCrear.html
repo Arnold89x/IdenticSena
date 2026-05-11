@@ -67,6 +67,19 @@
             <input type="number" th:field="*{edad}">
         </div>
 
+        <div class="form-group">
+            <label>Ficha</label>
+            <select name="fichaId">
+                <option value="">Seleccione una ficha</option>
+                <option
+                        th:each="ficha : ${fichas}"
+                        th:value="${ficha.id}"
+                        th:text="${ficha.codigo}"
+                        th:selected="${estudiante.ficha != null and estudiante.ficha.id == ficha.id}">
+                </option>
+            </select>
+        </div>
+
         <button type="submit" class="btn">
             Guardar estudiante
         </button>

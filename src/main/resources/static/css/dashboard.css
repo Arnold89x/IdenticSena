@@ -20,9 +20,7 @@ body {
 }
 
 .nav_bar{
-    font-width: 20px;
     display:flex;
-    justify-content: space-between;
     justify-content: center;
     align-items: center;
     flex-wrap: nowrap;
@@ -45,9 +43,7 @@ body {
 }
 
 .button_crud_container{
-
     margin: 10px;
-
 }
 
 .welcome {
@@ -65,11 +61,11 @@ body {
     transition: 0.2s;
     display: inline-block;
     border: none;
+    cursor: pointer;
 }
 
 .btn-primary {
     background: var(--colorVerde);
-    margin-bottom: 20px;
 }
 
 .btn-primary:hover {
@@ -92,7 +88,43 @@ body {
     background: #c0392b;
 }
 
+/* CONTENEDOR SUPERIOR */
+
+.top-actions{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* BUSCADOR */
+
+.search-container form{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-container input{
+    width: 320px;
+    padding: 11px 14px;
+    border-radius: 8px;
+    border: 1px solid #dcdcdc;
+    outline: none;
+    font-size: 14px;
+    background: var(--colorBlanco);
+    transition: 0.2s;
+}
+
+.search-container input:focus{
+    border-color: var(--colorVerdePrincipal);
+    box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.15);
+}
+
 /* TABLA */
+
 table {
     width: 100%;
     border-collapse: collapse;
